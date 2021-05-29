@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VuforiaUnityInfo version="7.0">
+    <TargetSet version="5.0" toolVersion="2.8.0">
+        <CylinderTarget name="fish-food-box" version="3.0" targetId="e666f3ebe8fc4b649d470e5349deee91" sideLength="0.080000" topDiameter="0.050000" bottomDiameter="0.050000" sideImage="fish-food-box.Body_scaled.jpg" topImage="fish-food-box.Top_scaled.jpg" bottomImage="fish-food-box.Bottom_scaled.jpg"/>
+    </TargetSet>
+</VuforiaUnityInfo>
