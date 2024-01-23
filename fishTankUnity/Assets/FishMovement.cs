@@ -6,7 +6,8 @@ using UnityEngine;
 //this script is managing all the fish mouvements and behaviors
 public class FishMovement : MonoBehaviour
 {
-
+    float dist_to_turn_cliff = 0.01f;
+    
     GameObject wallLeft;
     GameObject wallRight;
     GameObject wallUp;
@@ -28,7 +29,7 @@ public class FishMovement : MonoBehaviour
 
     float initialSpeed = 0.0035f;
     float speed;
-    float rushSpeed = 0.013f;
+    float rushSpeed = 0.007f;
     float initialRotationSpeed = 0.05f;
     float rotationSpeed;
 
@@ -40,7 +41,7 @@ public class FishMovement : MonoBehaviour
     bool hasEaten = false;
     bool isEating = false;
 
-    float detectedFoodDist = 0.4f;
+    float detectedFoodDist = 0.3f;
     float speedDecreaseNearFood = 0.1f;
     float canEatDist = 0.05f;
 
@@ -95,7 +96,7 @@ public class FishMovement : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (this.appearFromHouse)
         {
@@ -217,6 +218,8 @@ public class FishMovement : MonoBehaviour
             }
         }
 
+        if (dist_to_turn_cliff < Vector3.Distance(transform.position, cliff.transform.position)) ;// cliffCollisionDetected = true;
+
         if (this.cliffCollisionDetected)
         {
             Vector3 dir = this.cliff.transform.position - transform.position;
@@ -251,7 +254,7 @@ public class FishMovement : MonoBehaviour
         }
 
         //the fish can start rushing randomly (only if it met canRush criterias)
-        if (Random.Range(0, 200) == 1 && canRush() && !this.goTowardFood )
+        if (Random.Range(0, 800) == 1 && canRush() && !this.goTowardFood )
         {
             goFaster();
         }
@@ -259,7 +262,7 @@ public class FishMovement : MonoBehaviour
         //if the fish is no longer rushing but still faster than the initial, decrease slightly the speed
         if (!isFaster && speed > initialSpeed && !this.goTowardFood)
         {
-            this.speed = Mathf.Max(this.speed - 0.0002f, this.initialSpeed);
+            this.speed = Mathf.Max(this.speed - 0.002f, this.initialSpeed);
         }
         //test is the fish is swimming toward a wall and if it's not already turning, if yes, we will change it direction by updating newDir
         if (newDirX == directionX && newDirZ == directionZ && runToTheWall())

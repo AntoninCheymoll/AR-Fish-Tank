@@ -99,7 +99,7 @@ public class dropFood : MonoBehaviour
         if (Input.GetKeyDown("d"))
         {
             Vector3 pos = GameObject.Find("Scenery").transform.position;
-            pos.y += 50;
+            pos.y += 50; pos.x += 0.3f; pos.z += 0.05f;
 
             if (dropFish)
             {
